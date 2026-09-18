@@ -1,0 +1,525 @@
+/* ==========================================================================
+   HAUTE JOAILLERIE - LUXURY PORTFOLIO SECTION
+   Aesthetic: Deep Obsidian Black, Subtle Emerald Atmospheric Glow, Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-deep-obsidian: #050706;
+  --bg-emerald-mist: rgba(14, 48, 34, 0.22);
+  --bg-emerald-highlight: rgba(24, 76, 54, 0.16);
+  --gold-primary: #d4af37;
+  --gold-light: #f6e6b8;
+  --gold-rich: #c59f48;
+  --gold-dark: #8c6a21;
+  --gold-border: rgba(212, 175, 55, 0.22);
+  --gold-border-hover: rgba(235, 203, 118, 0.58);
+  --text-muted: rgba(215, 200, 175, 0.65);
+  
+  /* Typography */
+  --font-glimpse: 'Quiche Flare', 'quiche-flare', 'Cinzel Decorative', 'Italiana', 'Cormorant Garamond', Georgia, serif;
+  --font-serif-display: 'Italiana', 'Cormorant Garamond', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Georgia, serif;
+  --font-sans-meta: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Transitions & Curves */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-luxury: 0.65s;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-deep-obsidian);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-deep-obsidian);
+  font-family: var(--font-sans-meta);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   ATMOSPHERIC BACKGROUND & MOVING EMERALD GLOW
+   Subtle, elegant high-fashion luxury emerald mist and ambient particles
+   ========================================================================== */
+
+.ambient-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Atmospheric Glow Orbs */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.glow-orb-1 {
+  width: 720px;
+  height: 720px;
+  top: -10%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(16, 68, 48, 0.26) 0%, rgba(10, 42, 30, 0.12) 48%, transparent 72%);
+  animation: floatOrb1 22s var(--ease-luxury) infinite alternate;
+}
+
+.glow-orb-2 {
+  width: 650px;
+  height: 650px;
+  bottom: 5%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(20, 80, 56, 0.22) 0%, rgba(12, 46, 32, 0.08) 50%, transparent 75%);
+  animation: floatOrb2 26s var(--ease-luxury) infinite alternate;
+}
+
+.glow-orb-3 {
+  width: 580px;
+  height: 580px;
+  top: 45%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(12, 54, 38, 0.2) 0%, rgba(8, 32, 22, 0.06) 50%, transparent 70%);
+  animation: floatOrb3 24s var(--ease-luxury) infinite alternate;
+}
+
+.glow-orb-accent {
+  width: 480px;
+  height: 480px;
+  top: 30%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(18, 72, 50, 0.18) 0%, transparent 68%);
+  animation: floatOrb1 28s var(--ease-luxury) infinite alternate-reverse;
+}
+
+/* Cinematic Grain / Texture Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   PORTFOLIO SECTION WRAPPER
+   ========================================================================== */
+
+.portfolio-section {
+  position: relative;
+  z-index: 2;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 5.5rem 2rem 7rem;
+}
+
+/* ==========================================================================
+   LUXURY BRAND HEADER
+   ========================================================================== */
+
+.header-container {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 4.5rem;
+  opacity: 0;
+  transform: translateY(32px);
+  animation: luxuryReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Top Badge / Small Sub-mark */
+.brand-submark {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.submark-line {
+  width: 38px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-rich));
+}
+
+.submark-line.reverse {
+  background: linear-gradient(90deg, var(--gold-rich), transparent);
+}
+
+.submark-gem {
+  width: 6px;
+  height: 6px;
+  background-color: var(--gold-light);
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px var(--gold-primary);
+}
+
+/* Main Luxury Heading */
+.portfolio-heading {
+  font-family: var(--font-serif-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+/* Line 1: "A Glimpse of our" */
+.heading-line-sub {
+  font-family: var(--font-glimpse);
+  font-size: clamp(1.18rem, 2.4vw, 1.95rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #dfd3bd;
+  background: linear-gradient(135deg, #f7ebd7 0%, #dfc59b 50%, #cba76f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  opacity: 0.95;
+  padding-left: 0.22em; /* Centers the letter-spacing visually */
+}
+
+/* Line 2: "Conceptual Works" */
+.heading-line-main {
+  font-family: var(--font-serif-body);
+  font-size: clamp(2.4rem, 5.8vw, 4.4rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #c7a159 0%, #fae8be 25%, #d4ae61 50%, #fff7de 75%, #ba893a 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  filter: drop-shadow(0 4px 22px rgba(212, 175, 55, 0.22));
+  animation: metallicGoldShine 9s ease-in-out infinite alternate;
+}
+
+/* Bottom Divider */
+.header-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.8rem;
+}
+
+.divider-line {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45));
+}
+
+.divider-line.right {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.45), transparent);
+}
+
+.divider-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--gold-primary);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+/* ==========================================================================
+   VIDEO GRID LAYOUT
+   Desktop / Laptop: Exactly 3 videos in one row (2 rows total)
+   Mobile / Phone: Exactly 2 videos in one row (3 rows total)
+   ========================================================================== */
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   VIDEO CARD STYLING
+   Preserves 9:16 vertical luxury reel aspect ratio without cropping
+   ========================================================================== */
+
+.video-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: rgba(9, 13, 11, 0.72);
+  border: 1px solid var(--gold-border);
+  box-shadow: 
+    0 16px 45px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(16, 68, 48, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: 
+    transform var(--duration-luxury) var(--ease-luxury),
+    box-shadow var(--duration-luxury) var(--ease-luxury),
+    border-color var(--duration-luxury) ease;
+  will-change: transform, box-shadow;
+  
+  /* Entrance animation state */
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+.video-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop Hover Effects */
+@media (hover: hover) and (pointer: fine) {
+  .video-card:hover {
+    transform: translateY(-8px) scale(1.018);
+    border-color: var(--gold-border-hover);
+    box-shadow: 
+      0 26px 65px rgba(0, 0, 0, 0.9),
+      0 0 42px rgba(22, 92, 64, 0.28),
+      0 0 18px rgba(212, 175, 55, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 9:16 Aspect Ratio Container */
+.video-frame-aspect {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background-color: #000;
+  display: block;
+  overflow: hidden;
+}
+
+/* Fallback for older browsers without aspect-ratio */
+@supports not (aspect-ratio: 9 / 16) {
+  .video-frame-aspect {
+    padding-top: 177.777%;
+    height: 0;
+  }
+  
+  .video-frame-aspect iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* Video Iframe */
+.video-player-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background-color: #000;
+}
+
+/* ==========================================================================
+   SUBTLE FOOTER / SIGNATURE
+   ========================================================================== */
+
+.portfolio-signature {
+  text-align: center;
+  margin-top: 5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: luxuryReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.9s;
+}
+
+.signature-text {
+  font-family: var(--font-glimpse);
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: linear-gradient(135deg, #c7a159 0%, #fae8be 30%, #d4ae61 60%, #fff7de 85%, #ba893a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-left: 0.22em;
+  filter: drop-shadow(0 2px 16px rgba(212, 175, 55, 0.22));
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+@keyframes luxuryReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes metallicGoldShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatOrb1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(50px, -45px, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-35px, 30px, 0) scale(0.96);
+  }
+}
+
+@keyframes floatOrb2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate3d(-60px, 50px, 0) scale(0.94);
+  }
+  100% {
+    transform: translate3d(40px, -35px, 0) scale(1.1);
+  }
+}
+
+@keyframes floatOrb3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  50% {
+    transform: translate3d(45px, 60px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-40px, -40px, 0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN SPECIFICATIONS
+   ========================================================================== */
+
+/* Tablets / Medium Viewports */
+@media (max-width: 1080px) {
+  .portfolio-section {
+    padding: 4.5rem 1.75rem 5.5rem;
+  }
+  
+  .video-grid {
+    gap: 1.6rem;
+  }
+}
+
+/* Mobile Devices (Phones):
+   MUST display EXACTLY 2 videos in one row across 3 rows!
+   Zero horizontal scrolling, balanced spacing.
+*/
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 3.5rem 0.85rem 4.5rem;
+  }
+  
+  .header-container {
+    margin-bottom: 2.8rem;
+  }
+  
+  .brand-submark {
+    margin-bottom: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .submark-line {
+    width: 24px;
+  }
+  
+  .heading-line-sub {
+    font-size: 0.92rem;
+    letter-spacing: 0.26em;
+    padding-left: 0.26em;
+  }
+  
+  .heading-line-main {
+    font-size: 2.1rem;
+    letter-spacing: 0.04em;
+  }
+  
+  .header-divider {
+    margin-top: 1.25rem;
+  }
+  
+  .divider-line {
+    width: 50px;
+  }
+  
+  /* EXACTLY 2 VIDEOS PER ROW */
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  
+  .video-card {
+    border-radius: 12px;
+    box-shadow: 
+      0 10px 25px rgba(0, 0, 0, 0.75),
+      0 0 18px rgba(16, 68, 48, 0.1);
+  }
+  
+  .glow-orb-1,
+  .glow-orb-2,
+  .glow-orb-3 {
+    filter: blur(80px);
+    opacity: 0.85;
+  }
+}
+
+/* Very Small Mobile Screens (360px and below) */
+@media (max-width: 380px) {
+  .portfolio-section {
+    padding: 2.8rem 0.6rem 3.5rem;
+  }
+  
+  .video-grid {
+    gap: 0.6rem;
+  }
+  
+  .heading-line-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    padding-left: 0.2em;
+  }
+  
+  .heading-line-main {
+    font-size: 1.75rem;
+  }
+}
